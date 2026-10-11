@@ -59,6 +59,23 @@ Each run saves `subjects-search-results.png` in its `test-results` directory
 and attaches it to the Playwright report. Reports, screenshots, and authentication
 state must remain local/ignored because they can contain sensitive data.
 
+### Protocols and Site Contacts read-only smoke tests
+
+From `e2e`, run `npm run test:legacy-search` with `TEST_USERNAME` and
+`TEST_PASSWORD`. The `legacy-search-chromium` project targets QA US by default;
+override it with `LEGACY_SEARCH_BASE_URL`.
+
+Both `/control/admin/protocollist.aspx` and
+`/control/admin/managesitecontacts.aspx` use the same complete scenario:
+log in, open the page, click Search with empty/default filters, verify a
+successful search response and a nonempty results table, then capture the table.
+Do not create, import, edit, delete, or archive records. These are UI search
+checks, not direct SQL checks; no fixed count or record identity is required.
+
+Screenshots `protocols-search-results.png` and `site-contacts-search-results.png`
+are saved in each test's `test-results` directory and attached to the local
+Playwright report. Keep these artifacts ignored as they can contain sensitive data.
+
 | Variable | Description |
 |----------|-------------|
 | `BASE_URL` | Override the default baseURL |

@@ -14,7 +14,8 @@
     "test:legacy-setup": "playwright test --project=legacy-admin-setup",
     "test:sponsor-report": "playwright test tests/sponsor-alert-report/sponsorAlertReport.spec.ts",
     "test:global-api": "playwright test tests/global-api/globalApi.spec.ts --project=global-api",
-    "test:subjects": "playwright test --project=subjects-chromium"
+    "test:subjects": "playwright test --project=subjects-chromium",
+    "test:legacy-search": "playwright test --project=legacy-search-chromium"
   },
   "keywords": [],
   "author": "",

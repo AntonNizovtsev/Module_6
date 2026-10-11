@@ -44,7 +44,7 @@ export default defineConfig({
         storageState: STORAGE_STATE,
       },
       dependencies: ['setup'],
-      testIgnore: /sponsor-alert-report|subjects/,
+      testIgnore: /sponsor-alert-report|subjects|legacy-search/,
     },
 
     // ── Legacy ASP.NET admin app ─────────────────────────────────────────
@@ -76,6 +76,15 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         baseURL: process.env.SUBJECTS_BASE_URL ?? 'https://qa-web-us.vctrials.com',
+      },
+    },
+
+    {
+      name: 'legacy-search-chromium',
+      testMatch: /legacy-search[\\/]search\.spec\.ts/,
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: process.env.LEGACY_SEARCH_BASE_URL ?? 'https://qa-web-us.vctrials.com',
       },
     },
 
