@@ -44,7 +44,7 @@ export default defineConfig({
         storageState: STORAGE_STATE,
       },
       dependencies: ['setup'],
-      testIgnore: /sponsor-alert-report/,
+      testIgnore: /sponsor-alert-report|subjects/,
     },
 
     // ── Legacy ASP.NET admin app ─────────────────────────────────────────
@@ -68,6 +68,15 @@ export default defineConfig({
       },
       dependencies: ['legacy-admin-setup'],
       testMatch: /sponsor-alert-report/,
+    },
+
+    {
+      name: 'subjects-chromium',
+      testMatch: /subjects[\\/]subjects\.spec\.ts/,
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: process.env.SUBJECTS_BASE_URL ?? 'https://qa-web-us.vctrials.com',
+      },
     },
 
     // ── Global API (Swagger UI) ──────────────────────────────────────────

@@ -41,6 +41,24 @@ BASE_URL=https://vctrials.eu/ npx playwright test   # run against EU PROD portal
 
 ## Environment Variables
 
+### Subjects read-only smoke test
+
+From `e2e`, run `npm run test:subjects` with `TEST_USERNAME` and
+`TEST_PASSWORD` supplied through environment variables or a local `.env`.
+The dedicated `subjects-chromium` project targets
+`https://qa-web-us.vctrials.com` by default; override it with `SUBJECTS_BASE_URL`.
+
+The complete scenario is: log in, open `/control/admin/subjects.aspx`,
+click Search with empty filters, wait for a successful search response and a
+nonempty subjects table, then capture the table screenshot. Creating, modifying,
+randomizing, overriding, and deleting subject records are prohibited in this test.
+The check proves that the UI receives and displays search results, not direct
+SQL execution. No fixed record count or subject identity is required.
+
+Each run saves `subjects-search-results.png` in its `test-results` directory
+and attaches it to the Playwright report. Reports, screenshots, and authentication
+state must remain local/ignored because they can contain sensitive data.
+
 | Variable | Description |
 |----------|-------------|
 | `BASE_URL` | Override the default baseURL |
