@@ -81,7 +81,7 @@ export default defineConfig({
 
     {
       name: 'legacy-search-chromium',
-      testMatch: /legacy-search[\\/]search\.spec\.ts/,
+      testMatch: /legacy-search[\\/].*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         baseURL: process.env.LEGACY_SEARCH_BASE_URL ?? 'https://qa-web-us.vctrials.com',
