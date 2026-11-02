@@ -46,4 +46,17 @@ test.describe('Health Test page — smoke tests', () => {
 
     console.log('Biometric state response:', message?.trim());
   });
+
+  test('Check services health button displays service statuses', async () => {
+    await healthPage.clickAndWait(healthPage.servicesHealthButton);
+    await expect(healthPage.servicesHealthResult).toBeVisible();
+
+    const serviceRows = healthPage.servicesHealthResult.locator('tr.gridtext');
+    await expect(serviceRows).not.toHaveCount(0);
+
+    for (const row of await serviceRows.all()) {
+      await expect(row.locator('td').nth(0)).not.toBeEmpty();
+      await expect(row.locator('td').nth(1)).not.toBeEmpty();
+    }
+  });
 });

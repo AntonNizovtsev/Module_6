@@ -12,6 +12,7 @@
     "test:list": "playwright test tests/protocol-sync/protocolSyncList.spec.ts",
     "test:edit": "playwright test tests/protocol-sync/protocolSyncEdit.spec.ts",
     "test:legacy-setup": "playwright test --project=legacy-admin-setup",
+    "test:healthtest:services": "playwright test tests/health-test/healthTest.spec.ts --project=healthtest-qa-chromium --grep \"Check services health\"",
     "test:sponsor-report": "playwright test tests/sponsor-alert-report/sponsorAlertReport.spec.ts",
     "test:global-api": "playwright test tests/global-api/globalApi.spec.ts --project=global-api",
     "test:verification:happy": "playwright test successfulVerification.spec.ts --project=site-qa-chromium",

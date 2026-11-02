@@ -19,8 +19,17 @@ export class VctLoginPage {
     await passwordInput.press('Tab'); // ensure value is committed
 
     await this.page.locator('input[value="Login"], input[type="submit"]').first().click();
+    await this.page.waitForLoadState('networkidle');
 
-    await this.page.waitForURL(url => !url.toString().includes('index.aspx'), { timeout: 30000 });
+    const skipMfaButton = this.page.locator('input[value="Skip MFA"]');
+    if (await skipMfaButton.isVisible()) {
+      await skipMfaButton.click();
+    }
+
+    await this.page.waitForURL(
+      url => !/\/(?:index|mfa)\.aspx(?:$|\?)/i.test(url.pathname + url.search),
+      { timeout: 30000 }
+    );
     await this.page.waitForLoadState('networkidle');
   }
 }

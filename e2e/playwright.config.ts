@@ -44,7 +44,7 @@ export default defineConfig({
         storageState: STORAGE_STATE,
       },
       dependencies: ['setup'],
-      testIgnore: /sponsor-alert-report|site-verification|admin-protocol|compound-exception|study-exclusions/,
+      testIgnore: /sponsor-alert-report|site-verification|admin-protocol|compound-exception|study-exclusions|health-test/,
     },
 
     // ── Legacy ASP.NET admin app ─────────────────────────────────────────
@@ -68,6 +68,16 @@ export default defineConfig({
       },
       dependencies: ['legacy-admin-setup'],
       testMatch: /sponsor-alert-report/,
+    },
+    {
+      name: 'healthtest-qa-chromium',
+      testMatch: /health-test/,
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: process.env.HEALTHTEST_BASE_URL ?? 'https://qa-web-us.vctrials.com',
+        storageState: { cookies: [], origins: [] },
+        trace: 'retain-on-failure',
+      },
     },
 
     // ── Global API (Swagger UI) ──────────────────────────────────────────
