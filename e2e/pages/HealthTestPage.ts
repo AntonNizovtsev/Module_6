@@ -16,6 +16,9 @@ export class HealthTestPage {
   readonly biometricStateButton: Locator;
   readonly biometricStateResult: Locator;
 
+  readonly servicesHealthButton: Locator;
+  readonly servicesHealthTable: Locator;
+
   constructor(private readonly page: Page) {
     this.emailTestButton = page.locator('input[value="Email test"]');
     this.emailTestResult = page.locator('#ctl00_ContentPlaceHolder1_Label1');
@@ -28,6 +31,11 @@ export class HealthTestPage {
 
     this.biometricStateButton = page.locator('#ctl00_ContentPlaceHolder1_btnGetBiometricState');
     this.biometricStateResult = page.locator('#ctl00_ContentPlaceHolder1_lbBiometricStateResult');
+
+    this.servicesHealthButton = page.locator('#ctl00_ContentPlaceHolder1_btnCheckServicesHealth');
+    this.servicesHealthTable = page.locator('table.table_border').filter({
+      has: page.locator('th').filter({ hasText: /^Service$/ }),
+    });
   }
 
   async goto(): Promise<void> {
@@ -45,6 +53,10 @@ export class HealthTestPage {
   }
 
   async clickAndWait(button: Locator): Promise<void> {
+    const cookieConsent = this.page.locator('#vctCookieConsentAccept');
+    if (await cookieConsent.isVisible()) {
+      await cookieConsent.click();
+    }
     await button.click();
     await this.page.waitForLoadState('networkidle');
   }
