@@ -66,10 +66,12 @@ test.describe('Subject Sync (Admin)', () => {
       );
     }
 
-    // Name the screenshot after the environment actually under test, so runs
-    // against different envs (QA, US prod, LATAM prod, ...) don't clobber
-    // each other's result file.
+    // Include the environment and UTC timestamp so screenshots remain distinct.
     const envLabel = new URL(page.url()).hostname.replace(/[^a-z0-9]+/gi, '-');
-    await page.screenshot({ path: `sync-status-result-${envLabel}.png`, fullPage: true });
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    await page.screenshot({
+      path: `sync-status-result-${envLabel}-${timestamp}.png`,
+      fullPage: true,
+    });
   });
 });

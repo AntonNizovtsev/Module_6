@@ -13,7 +13,12 @@
     "test:edit": "playwright test tests/protocol-sync/protocolSyncEdit.spec.ts",
     "test:legacy-setup": "playwright test --project=legacy-admin-setup",
     "test:sponsor-report": "playwright test tests/sponsor-alert-report/sponsorAlertReport.spec.ts",
-    "test:global-api": "playwright test tests/global-api/globalApi.spec.ts --project=global-api"
+    "test:global-api": "playwright test tests/global-api/globalApi.spec.ts --project=global-api",
+    "test:verification:happy": "playwright test successfulVerification.spec.ts --project=site-qa-chromium",
+    "test:verification:age": "playwright test ageViolation.spec.ts --project=site-qa-chromium",
+    "test:protocol:open": "playwright test --project=admin-protocol-qa-chromium",
+    "test:verification:compound": "playwright test --project=compound-exception-qa-chromium",
+    "test:verification:exclusions": "playwright test --project=study-exclusions-qa-chromium"
   },
   "keywords": [],
   "author": "",
