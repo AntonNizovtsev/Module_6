@@ -16,6 +16,22 @@ additional permission is needed. Its current local path is
 `C:\Users\antni\vct-copilot`. Keep code changes in Module_6 unless separately
 requested.
 
+## Playwright publishing target
+
+When the user asks to push, publish, or deploy this project's Playwright tests,
+the target is the Azure DevOps repository
+[VCT.Tests.Selenium](https://dev.azure.com/VerifiedClinicalTrials/VCT/_git/VCT.Tests.Selenium?path=/VCT.Playwright.Tests),
+inside the `VCT.Playwright.Tests` folder. This is the confirmed delivery target;
+the GitHub `Module_6` remote is not the destination for publishing these tests.
+
+Transfer only the relevant Playwright files into that folder; do not push the
+Module_6 Git history or unrelated project files to Azure DevOps. Inspect the ADO
+repository structure and current branch before publishing. Do not guess the
+target branch when it is unclear, and never force-push. If ADO authentication
+or write access is unavailable, preserve the local changes and report the
+specific blocker. This is a source-control destination, not an instruction to
+deploy changes to a production application or Azure App Service.
+
 ## Protocol editing approval
 
 Before editing a protocol, describe the target environment, protocol, and every
